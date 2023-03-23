@@ -113,20 +113,32 @@ function HTMLActuator() {
   
     var difference = score - this.score;
     this.score = score;
+
+    var expScore = function (sc) {
+      scLog = sc / Math.log2(10);
+      if ((scLog) >= 36) {
+        return Math.pow(10, (scLog) % 1).toFixed(3) + "e" + Math.floor(scLog);
+      } else if ((scLog) >= 6) {
+        var abbrev = " KMBTqQsSOND"
+        return Math.pow(10, (scLog) % 3).toFixed(3) + abbrev[Math.floor(scLog / 3)]
+      } else {
+        return Math.pow(10, (scLog)).toFixed(0)
+      }
+    }
   
-    this.scoreContainer.textContent = (1000 * this.score).toFixed(0);
+    this.scoreContainer.textContent = expScore(this.score);
   
     if (difference > 0) {
       var addition = document.createElement("div");
       addition.classList.add("score-addition");
-      addition.textContent = "+" + (1000 * difference).toFixed(0);
+      addition.textContent = "+" + (100 * difference).toFixed(1) + "%";
   
       this.scoreContainer.appendChild(addition);
     }
   };
   
   HTMLActuator.prototype.updateBestScore = function (bestScore) {
-    this.bestContainer.textContent = (1000 * bestScore).toFixed(0);
+    this.bestContainer.textContent = (1 * bestScore).toFixed(3);
   };
   
   HTMLActuator.prototype.message = function (won) {

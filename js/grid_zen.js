@@ -175,12 +175,12 @@ function Grid(size, previousState) {
         a = (vals[i] - lowTile) / (vals[i - 1] - lowTile);
         b = Math.pow(10, i);
         c = 9 / b;
-        way2 += a * c;
+        way2 += Math.pow(a, 2) * c;
     }
     
       way2 += vals[0] - 1;
   
-      return Math.round( ( ( way2 / 12 ) * 100) * 100) / 100;
+      return way2;
   }
   
   Grid.prototype.serialize = function () {
