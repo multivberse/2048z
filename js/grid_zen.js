@@ -140,8 +140,8 @@ function Grid(size, previousState) {
   
       var tileLogValue = Math.ceil(highLogValue / 2);
       
-      if (highLogValue - tileLogValue > 6) {
-          tileLogValue = highLogValue - 6;
+      if (highLogValue - tileLogValue > gameDifficulty) {
+          tileLogValue = highLogValue - gameDifficulty;
       }
       
       return tileLogValue;

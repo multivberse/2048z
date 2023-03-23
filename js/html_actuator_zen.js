@@ -65,9 +65,12 @@ function HTMLActuator() {
     var classes = ["tile", "tile-" + classValue, positionClass];
   
     this.applyClasses(wrapper, classes);
-  
+    
+    var greek = " αβγδεζηθικλμνξοπρστυφχψω";
+    var dispValue = greek[Math.floor((tile.logValue - 1) / 144) % 25] + ((tile.logValue - 1) % 144 + 1);
+
     inner.classList.add("tile-inner");
-    inner.textContent = tile.logValue;
+    inner.textContent = dispValue;
   
     if (tile.previousPosition) {
       // Make sure that the tile gets rendered in the previous position first
@@ -138,7 +141,7 @@ function HTMLActuator() {
   };
   
   HTMLActuator.prototype.updateBestScore = function (bestScore) {
-    this.bestContainer.textContent = (1 * bestScore).toFixed(3);
+    this.bestContainer.textContent = (1 * bestScore).toFixed(2);
   };
   
   HTMLActuator.prototype.message = function (won) {

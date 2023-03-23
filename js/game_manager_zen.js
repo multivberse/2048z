@@ -152,10 +152,11 @@ GameManager.prototype.serialize = function () {
 // Save all tile positions and remove merger info
 GameManager.prototype.prepareTiles = function () {
   var highTile = this.grid.getHighestTileLogValue();
+  gameDifficulty = document.getElementById("difficulty-value").value;
   this.grid.eachCell(function (x, y, tile) {
     if (tile) {
       tile.mergedFrom = null;
-      tile.logValue = Math.max(tile.logValue, highTile - 6);
+      tile.logValue = Math.max(tile.logValue, highTile - gameDifficulty);
       tile.savePosition();
     }
   });
